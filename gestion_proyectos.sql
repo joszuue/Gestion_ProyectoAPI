@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 15-03-2025 a las 03:44:18
--- Versión del servidor: 8.0.31
--- Versión de PHP: 8.2.25
+-- Tiempo de generación: 20-03-2025 a las 00:56:47
+-- Versión del servidor: 9.1.0
+-- Versión de PHP: 8.2.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -77,7 +77,14 @@ CREATE TABLE IF NOT EXISTS `progreso_tarea` (
   `new_estado` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `progreso_tarea_id_tarea_index` (`id_tarea`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `progreso_tarea`
+--
+
+INSERT INTO `progreso_tarea` (`id`, `id_tarea`, `comentario`, `last_estado`, `new_estado`) VALUES
+(1, 1, 'Corrección: la tarea está casi finalizada', 'En Progreso', 'Finalizada');
 
 -- --------------------------------------------------------
 
@@ -122,7 +129,14 @@ CREATE TABLE IF NOT EXISTS `tarea` (
   `estado` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `tarea_id_proyecto_index` (`id_proyecto`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `tarea`
+--
+
+INSERT INTO `tarea` (`id`, `id_proyecto`, `tarea`, `estado`) VALUES
+(1, 2, 'Diseñar pantallas de login', 'Pendiente');
 
 -- --------------------------------------------------------
 
@@ -138,7 +152,14 @@ CREATE TABLE IF NOT EXISTS `tarea_responsables` (
   PRIMARY KEY (`id`),
   KEY `tarea_responsables_id_tarea_index` (`id_tarea`),
   KEY `tarea_responsables_id_responsable_index` (`id_responsable`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `tarea_responsables`
+--
+
+INSERT INTO `tarea_responsables` (`id`, `id_tarea`, `id_responsable`) VALUES
+(1, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -156,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `rol` varchar(100) NOT NULL,
   `estado` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -167,8 +188,10 @@ INSERT INTO `usuarios` (`id`, `nombres`, `apellidos`, `email`, `contra`, `rol`, 
 (2, 'Denis', 'Rodríguez', '', 'xd', 'Admin', 'Activo'),
 (3, 'TEST', 'Vásquez', '', '$2y$10$mNhVNcJEaj6hly06M/x9NeTuVebgwVZ7jns/O5Wd7miWabck7a9dG', 'User', 'Activo'),
 (4, 'TEST', 'Vásque', '', '$2y$10$72gjG5n4zuAG5irofa1eHeSilzba2obHTDBTu2K1RogxYiHFs3Tgm', 'uwu', 'Activo'),
-(5, 'TEST', 'Vásquez', 'josue@gmail.com', '$2y$10$B1k4jnilqlObEgKtuFwTZ.NLmoo06VDf2KZIX6ynanwdOwu0uGGZ.', ' ', 'Eliminado'),
-(6, 'Josué UPDATE', 'Rodríguez UPDATE', 'imjosuu@gmail.com', '$2y$10$QuJsruqzvK9UuC6XYRivKOxJJmfXXZ7yWmURv3tuhIvGyp8tJNty', 'Cliente', 'Activo');
+(5, 'TEST', 'Vásquez', 'josue@gmail.com', '$2y$10$B1k4jnilqlObEgKtuFwTZ.NLmoo06VDf2KZIX6ynanwdOwu0uGGZ.', ' ', 'Activo'),
+(6, 'Josué UPDATE', 'Rodríguez UPDATE', 'imjosuu@gmail.com', '$2y$10$QuJsruqzvK9UuC6XYRivKOxJJmfXXZ7yWmURv3tuhIvGyp8tJNty', 'Cliente', 'Activo'),
+(7, 'prueba', 'prueba', 'prueba@gmail.com', '$2y$10$KFL8QufkPIu5B2//3MLX7etKmvxFX3AyvqnV5Us7j.ILexIGJ31JC', 'Cliente', 'Activo'),
+(8, 'prueba', 'prueba', 'prueba@gmail.com', '$2y$10$IANcpwrU/6fXuRd5lnIhXejdqKiSKYe1aMNXcaLPbBJisNwutXnne', 'Cliente', 'Activo');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
