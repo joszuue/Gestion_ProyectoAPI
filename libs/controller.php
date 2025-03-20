@@ -9,7 +9,7 @@
         function loadModel($model){
             $url = 'models/'.$model.'Model.php';
             if(file_exists($url)){
-                require $url;
+                require_once $url;
                 $modelName = $model. 'Model';
                 $this->model = new $modelName;
             }
