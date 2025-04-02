@@ -5,18 +5,16 @@ header("Content-Type: application/json");
 class TareasController extends Controller {
     public function __construct() {
         parent::__construct();
-        // Carga TareasModel (archivo TareasModel.php)
         $this->loadModel("Tareas");
     }
 
     // Endpoint para crear una nueva tarea
     public function crear() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $data = json_decode(file_get_contents('php://input'), true);
 
             // Verifica que vengan los datos mínimos
-            if(!isset($data['id_proyecto']) || !isset($data['tarea'])){
+            if (!isset($data['id_proyecto']) || !isset($data['tarea'])) {
                 http_response_code(400);
                 echo json_encode([
                     "success" => false,
@@ -31,7 +29,7 @@ class TareasController extends Controller {
             // Llama al modelo
             $idInsertado = $this->model->crearTarea($data['id_proyecto'], $data['tarea'], $estado);
 
-            if($idInsertado) {
+            if ($idInsertado) {
                 echo json_encode([
                     "success" => true,
                     "message" => "Tarea creada correctamente",
